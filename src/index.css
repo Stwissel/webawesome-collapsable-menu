@@ -1,0 +1,41 @@
+html,
+body {
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+@property --menu-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 15rem;
+}
+
+wa-page {
+  --menu-width: 15rem; /* full */
+  transition: --menu-width 180ms ease;
+}
+wa-page[data-nav='compact'] {
+  --menu-width: 3rem;
+}
+
+nav[slot='navigation'] {
+  padding-block: var(--wa-space-2xs, 0.25rem);
+  padding-inline: var(--wa-space-2xs, 0.25rem);
+  background-color: var(--wa-color-brand-90, #a06491);
+  overflow: hidden;
+}
+
+wa-page[data-nav='compact'] nav[slot='navigation'] wa-button::part(label) {
+  visibility: hidden;
+}
+
+nav[slot='navigation'] wa-button::part(base) {
+  justify-content: flex-start;
+  padding-inline: var(--wa-space-xs, 0.5rem);
+  padding-block: 0;
+}
+
+nav[slot='navigation'] wa-button::part(label) {
+  white-space: nowrap;
+}
