@@ -22,10 +22,12 @@ wa-page[data-nav='compact'] {
 nav[slot='navigation'] {
   padding-block: var(--wa-space-2xs, 0.25rem);
   padding-inline: var(--wa-space-2xs, 0.25rem);
-  background-color: var(--wa-color-brand-90, #a06491);
+  border-right: 1px solid var(--wa-color-border, #e0e0e0);
   overflow: hidden;
 }
-
+wa-page[data-nav='compact'] nav[slot='navigation'] {
+  background-color: var(--wa-color-brand-90, #a06491);
+}
 wa-page[data-nav='compact'] nav[slot='navigation'] wa-button::part(label) {
   visibility: hidden;
 }
