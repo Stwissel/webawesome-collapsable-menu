@@ -19,6 +19,30 @@ wa-page[data-nav='compact'] {
   --menu-width: 3rem;
 }
 
+/*
+ * The menu column is sized by --menu-width, never by its contents. wa-page gives
+ * part(menu) `overflow: auto` so a long nav list can scroll vertically, which means
+ * any child wider than the column raises a horizontal scrollbar. Clip that axis.
+ * (Next to overflow-y: auto, `clip` computes to `hidden` — no scrollbar either way.)
+ */
+wa-page::part(menu) {
+  overflow-x: clip;
+}
+
+/*
+ * Padding lives here rather than inline so compact mode can win against it. At 3rem
+ * the content box is 16px wide while "Menu" needs 40.5px and cannot break, so the
+ * caption is hidden instead of spilling past the column edge.
+ */
+[slot='navigation-header'] {
+  padding: var(--wa-space-m, 1rem);
+  overflow: hidden;
+  white-space: nowrap;
+}
+wa-page[data-nav='compact'] [slot='navigation-header'] {
+  visibility: hidden;
+}
+
 nav[slot='navigation'] {
   padding-block: var(--wa-space-2xs, 0.25rem);
   padding-inline: var(--wa-space-2xs, 0.25rem);
